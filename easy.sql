@@ -32,4 +32,39 @@ from patients
 select (first_name || ' ' || last_name) as full_name
 from patients
 
+/* Show first name, last name, and the full province name of each patient.
+Example: 'Ontario' instead of 'ON'
+*/
+select first_name,last_name,province_name
+from patients
+join province_names
+on patients.province_id = province_names.province_id;
+
+/* Show how many patients have a birth_date with 2010 as the birth year.
+*/
+select count(year(birth_date)) as total_patients
+from patients
+where year(birth_date) = 2010
+
+select (count(*)) as total_patients
+from patients
+where year(birth_date) = 2010;
+
+select count(birth_date) as total_patients
+from patients
+where birth_date>= '2010-01-01' and birth_date<= '2010-12-31'; 
+
+/* Show the first_name, last_name, and height of the patient with the greatest height.
+*/
+select first_name,last_name, max(height) as height
+from patients;
+
+select first_name,last_name,height
+from patients
+order by height desc limit 1
+
+select first_name,last_name,height
+from patients
+where height = (select max(height) from patients)
+
 
