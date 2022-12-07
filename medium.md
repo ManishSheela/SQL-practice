@@ -129,6 +129,36 @@ order by admission_date desc limit 1
 1. patient_id is an odd number and attending_doctor_id is either 1, 5, or 19.
 2. attending_doctor_id contains a 2 and the length of patient_id is 3 characters.
 ```{mysql}
+select patient_id,attending_doctor_id,diagnosis 
+from admissions
+where (mod(patient_id,2) = 1 and attending_doctor_id in(1,5,19)) 
+or (attending_doctor_id like '%2%' and len(patient_id) = 3 )
+```
+> Show first_name, last_name, and the total number of admissions attended for each doctor.
+Every admission has been attended by a doctor.
+```{mysql}
+select first_name,last_name, count(*)as admissions_total 
+from doctors
+join admissions
+on doctors.doctor_id = admissions.attending_doctor_id
+group by first_name,last_name
+```
+> For each physicain, display their id, full name, and the first and last admission date they attended.
+```{mysql}
+select doctor_id, concat(first_name,' ',last_name) as full_name, min(admission_date),max(admission_date) 
+from doctors
+join admissions
+on admissions.attending_doctor_id = doctors.doctor_id
+group by doctor_id
+```
+> Display the total amount of patients for each province. Order by descending.
+```{mysql}
+select province_name, count(*) as patient_count from patients
+join province_names
+on province_names.province_id = patients.province_id
+group by province_name 
+order by patient_count desc
+```
 
 
 
