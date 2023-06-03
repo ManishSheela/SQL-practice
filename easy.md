@@ -1,3 +1,8 @@
+SELECT Name, IFNULL(Salary, 'Not available') AS Salary
+FROM Employees;
+
+
+
 > Show first name, last name, AND gender of patients who's gender is 'M' 
 ```{mysql} 
 SELECT first_name,last_name,gender
