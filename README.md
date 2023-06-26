@@ -10,3 +10,4 @@ The solution to the query's not taken from anywhere. It was solved by **ME** if 
 
 
 
+![image](https://github.com/ManishSheela/SQL-practice/assets/96982207/262c2ab8-92b0-44d8-a86b-389aa7aa3012)
